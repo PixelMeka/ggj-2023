@@ -129,6 +129,7 @@ public class Core : MonoBehaviour
         if(end == true)
         {
             gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 

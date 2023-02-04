@@ -14,6 +14,8 @@ public class RootCollider : MonoBehaviour
     bool poweringUp = false;
     bool decrementCounter = false;
 
+    int score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +26,14 @@ public class RootCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        score = PlayerPrefs.GetInt("curScore");
+
         if(die == true)
         {
             if(poweringUp == true && decrementCounter == false)
             {
+                score += 10;
+                PlayerPrefs.SetInt("curScore", score);
                 GameObject.Find("Core").GetComponent<Core>().counter -= 1;
                 decrementCounter = true;
             }
@@ -49,6 +55,8 @@ public class RootCollider : MonoBehaviour
         {
             sliced.Play();
             die = true;
+            score += 10;
+            PlayerPrefs.SetInt("curScore", score);
             
         }
 
