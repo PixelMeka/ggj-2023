@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject clickButton;
+
     bool gameEnd = false;
     bool paused = false;
 
@@ -53,3 +55,5 @@ public class GameManager : MonoBehaviour
 
     }
 }
+
+
