@@ -8,14 +8,18 @@ public class MakineHareketi : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent degisken;
     public Camera cam;
     public ParticleSystem dirtHit;
-    
+    AudioSource audioSource;
+    public GameObject machineModel;
+    Vector3 sliceLoc;
 
     // Start is called before the first frame update
     void Start()
     {
         degisken = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-        ParticleSystem dirtP = GetComponent<ParticleSystem>();
+        audioSource = machineModel.GetComponent<AudioSource>();
+        ParticleSystem dirtHit = GetComponent<ParticleSystem>();
+        
     }
 
     // Update is called once per frame
@@ -43,4 +47,25 @@ public class MakineHareketi : MonoBehaviour
         //     }
         // }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            dirtHit.Play();
+            audioSource.Play();
+        }
+    }
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+      //  if(collision.transform.gameObject.name == "Enemy")
+     //   {
+      //      print("asd");
+     //       sliceLoc = collision.contacts[0].point;
+     //       Instantiate(sliceEffect, sliceLoc, Quaternion.identity);
+            
+     //   }
+        
+    //}
 }

@@ -8,10 +8,16 @@ public class HizOlcme : MonoBehaviour
     private Vector3 previousPosition;
     public float curSpeed;
     public ParticleSystem dirt;
+
+    public double startingPitch;
+    public double endingPitch;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = (float)startingPitch;
     }
 
     // Update is called once per frame
@@ -23,10 +29,12 @@ public class HizOlcme : MonoBehaviour
 
      if(curSpeed == 0){
         dirt.Stop();
+        audioSource.pitch = (float)startingPitch;
      }
      
     if(curSpeed != 0){
         dirt.Play();
+        audioSource.pitch = (float)endingPitch;
     }
     }
 }
