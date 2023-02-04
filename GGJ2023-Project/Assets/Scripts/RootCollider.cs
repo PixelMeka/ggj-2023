@@ -45,7 +45,7 @@ public class RootCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Bullet")
         {
             sliced.Play();
             die = true;

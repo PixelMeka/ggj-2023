@@ -23,9 +23,9 @@ public class HizOlcme : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 curMove = transform.position - previousPosition;
-     curSpeed = curMove.magnitude / Time.deltaTime;
-     previousPosition = transform.position;
+    Vector3 curMove = transform.position - previousPosition;
+    curSpeed = curMove.magnitude / Time.deltaTime;
+    previousPosition = transform.position;
 
      if(curSpeed == 0){
         dirt.Stop();

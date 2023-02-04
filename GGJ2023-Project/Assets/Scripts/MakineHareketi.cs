@@ -12,6 +12,15 @@ public class MakineHareketi : MonoBehaviour
     public GameObject machineModel;
     Vector3 sliceLoc;
 
+    public float bulletSpeed;
+    bool shoot = true;
+
+    public GameObject bullet;
+    public Transform bulletPos;
+
+    public float bulletTimer = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +45,34 @@ public class MakineHareketi : MonoBehaviour
                 degisken.SetDestination(navMeshHit.position);
             }
         }
+
+        
+
+        if(shoot == true){
+
+            if(Input.GetMouseButtonDown(1))
+            {
+            Shoot();
+            }
+            
+        }
+
+        if(shoot == false){
+
+            if (bulletTimer > 0)
+            {
+                bulletTimer -= Time.deltaTime;
+            }
+            if (bulletTimer <= 0)
+            {
+                bulletTimer = 5;
+                shoot = true;
+            }
+
+
+        }
+
+        
         
         // if(Input.GetMouseButtonDown(0))
         // {
@@ -55,6 +92,15 @@ public class MakineHareketi : MonoBehaviour
             dirtHit.Play();
             audioSource.Play();
         }
+    }
+
+    void Shoot(){
+
+        GameObject bulletSpawn = Instantiate(bullet, bulletPos.position, this.transform.rotation);
+
+        bulletSpawn.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+
+        shoot = false;
     }
 
     //void OnCollisionEnter(Collision collision)

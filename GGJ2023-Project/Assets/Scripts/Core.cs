@@ -15,6 +15,12 @@ public class Core : MonoBehaviour
     public GameObject point1;
     public GameObject point2;
     public GameObject point3;
+    public GameObject point4;
+    public GameObject point5;
+    public GameObject point6;
+    public GameObject point7;
+
+
     bool spawned = false;
     float spawnTimer = 7;
 
@@ -29,7 +35,7 @@ public class Core : MonoBehaviour
     {
         if(spawned == false)
         {
-            spawnNumber = Random.Range(1, 4);
+            spawnNumber = Random.Range(1, 9);
             if (spawnNumber == 1)
             {
                 Instantiate(ProSeed, point0.transform.position, point0.transform.localRotation);
@@ -50,6 +56,29 @@ public class Core : MonoBehaviour
                 Instantiate(ProSeed, point3.transform.position, point3.transform.localRotation);
                 spawned = true;
             }
+            if (spawnNumber == 5)
+            {
+                Instantiate(ProSeed, point4.transform.position, point4.transform.localRotation);
+                spawned = true;
+            }
+
+            if (spawnNumber == 6)
+            {
+                Instantiate(ProSeed, point5.transform.position, point5.transform.localRotation);
+                spawned = true;
+            }
+            if (spawnNumber == 7)
+            {
+                Instantiate(ProSeed, point6.transform.position, point6.transform.localRotation);
+                spawned = true;
+            }
+            if (spawnNumber == 8)
+            {
+                Instantiate(ProSeed, point7.transform.position, point7.transform.localRotation);
+                spawned = true;
+            }
+
+
         }
         
 
