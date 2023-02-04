@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public GameObject clickButton;
 
+    public GameObject player;
+
     bool gameEnd = false;
-    bool paused = false;
+    public bool paused = false;
 
     public GameObject core;
 
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        AudioListener.pause = false;
         gameEnd = core.GetComponent<Core>().end;
     }
 
@@ -32,10 +35,25 @@ public class GameManager : MonoBehaviour
 
         if(gameEnd == false){
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !paused){
+            if (Input.GetKeyDown(KeyCode.Escape)){
 
-            Time.timeScale = 0;
-            
+                if (paused)
+                {
+                    player.GetComponent<MakineHareketi>().enabled = true;
+                    Time.timeScale = 1;
+                    AudioListener.pause = false;
+                    paused = false;
+                }
+                else
+                {
+                    player.GetComponent<MakineHareketi>().enabled = false;
+                    Time.timeScale = 0;
+                    AudioListener.pause = true;
+                    paused = true;
+                    
+                }
+
+                
 
             }
   

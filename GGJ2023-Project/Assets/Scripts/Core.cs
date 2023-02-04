@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Core : MonoBehaviour
 {
-
+    public GameObject player;
     public GameObject gameOverPanel;
 
+    AudioSource audioSource;
+    public GameObject warning;
+
     public ParticleSystem overheat;
+    public ParticleSystem critial;
     public int counter = 0;
     public float timer = 3;
+    public double timerEnd = 0.8;
     public bool end = false;
     int spawnNumber;
     public GameObject ProSeed;
@@ -23,6 +29,11 @@ public class Core : MonoBehaviour
     public GameObject point6;
     public GameObject point7;
 
+    public GameObject explosion;
+
+    bool audioC = false;
+    bool explode = false;
+    bool realEnd = false;
 
     bool spawned = false;
     float spawnTimer = 7;
@@ -30,7 +41,10 @@ public class Core : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player.GetComponent<MakineHareketi>().enabled = true;
         ParticleSystem overheat = GetComponent<ParticleSystem>();
+        warning.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -104,14 +118,23 @@ public class Core : MonoBehaviour
         if (counter >= 2)
         {
             overheat.Play();
+            critial.Stop();
         }
         if(counter < 2)
         {
             overheat.Stop();
+            critial.Stop();
         }
 
         if(counter >= 3)
         {
+            if(audioC == false)
+            {
+                warning.SetActive(true);
+                audioSource.Play();
+                audioC = true;
+            }
+            critial.Play();
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
@@ -123,13 +146,41 @@ public class Core : MonoBehaviour
         }
         if(counter < 3)
         {
+            warning.SetActive(false);
+            audioSource.Stop();
+            audioC = false;
             timer = 3;
         }
 
         if(end == true)
         {
-            gameOverPanel.SetActive(true);
-            Time.timeScale = 0;
+            warning.SetActive(false);
+
+            if(explode == false)
+            {
+                Instantiate(explosion, this.transform.position, Quaternion.identity);
+                explode = true;
+            }
+            
+
+            if (timerEnd > 0)
+            {
+                timerEnd -= Time.deltaTime;
+            }
+
+            if (timerEnd <= 0)
+            {
+                realEnd = true;
+            }
+
+            if (realEnd)
+            {
+                audioSource.Stop();
+                gameOverPanel.SetActive(true);
+                Time.timeScale = 0;
+                AudioListener.pause = true;
+                player.GetComponent<MakineHareketi>().enabled = false;
+            }
         }
     }
 

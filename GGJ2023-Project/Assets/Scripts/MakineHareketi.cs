@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MakineHareketi : MonoBehaviour
 {
@@ -10,13 +11,19 @@ public class MakineHareketi : MonoBehaviour
     public ParticleSystem dirtHit;
     AudioSource audioSource;
     public GameObject machineModel;
-    Vector3 sliceLoc;
+    public GameObject bulletIcon;
 
     public float bulletSpeed;
     bool shoot = true;
 
+    bool gameEnd = false;
+    public bool paused = false;
+
     public GameObject bullet;
     public Transform bulletPos;
+
+    public GameObject core;
+    public GameObject gManager;
 
     public float bulletTimer = 5;
 
@@ -26,6 +33,10 @@ public class MakineHareketi : MonoBehaviour
     {
         degisken = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
+        gameEnd = core.GetComponent<Core>().end;
+        paused = gManager.GetComponent<GameManager>().paused;
+
+        bulletIcon.SetActive(true);
         audioSource = machineModel.GetComponent<AudioSource>();
         ParticleSystem dirtHit = GetComponent<ParticleSystem>();
         
@@ -49,16 +60,17 @@ public class MakineHareketi : MonoBehaviour
         
 
         if(shoot == true){
+            bulletIcon.SetActive(true);
 
-            if(Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
             {
-            Shoot();
+                Shoot();
             }
-            
+
         }
 
         if(shoot == false){
-
+            bulletIcon.SetActive(false);
             if (bulletTimer > 0)
             {
                 bulletTimer -= Time.deltaTime;
