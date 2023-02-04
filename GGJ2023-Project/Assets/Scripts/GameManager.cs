@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     int score;
     public Text scoreText;
     public GameObject gameoverPanel;
+    public GameObject pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,32 +33,6 @@ public class GameManager : MonoBehaviour
     {
         score = PlayerPrefs.GetInt("curScore");
         scoreText.text = score.ToString();
-
-        if(gameEnd == false){
-
-            if (Input.GetKeyDown(KeyCode.Escape)){
-
-                if (paused)
-                {
-                    player.GetComponent<MakineHareketi>().enabled = true;
-                    Time.timeScale = 1;
-                    AudioListener.pause = false;
-                    paused = false;
-                }
-                else
-                {
-                    player.GetComponent<MakineHareketi>().enabled = false;
-                    Time.timeScale = 0;
-                    AudioListener.pause = true;
-                    paused = true;
-                    
-                }
-
-                
-
-            }
-  
-        }
 
         
     }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Core : MonoBehaviour
 {
+    public GameObject scoreText;
+    public GameObject scoreTextNum;
+
     public GameObject player;
     public GameObject gameOverPanel;
 
@@ -41,6 +44,9 @@ public class Core : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreText.SetActive(true);
+        scoreTextNum.SetActive(true);
+
         player.GetComponent<MakineHareketi>().enabled = true;
         ParticleSystem overheat = GetComponent<ParticleSystem>();
         warning.SetActive(false);
@@ -177,6 +183,8 @@ public class Core : MonoBehaviour
             {
                 audioSource.Stop();
                 gameOverPanel.SetActive(true);
+                scoreText.SetActive(false);
+                scoreTextNum.SetActive(false);
                 Time.timeScale = 0;
                 AudioListener.pause = true;
                 player.GetComponent<MakineHareketi>().enabled = false;
