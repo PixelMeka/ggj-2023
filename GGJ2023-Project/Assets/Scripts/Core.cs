@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Core : MonoBehaviour
 {
+
+    public GameObject gameOverPanel;
+
     public ParticleSystem overheat;
     public int counter = 0;
     public float timer = 3;
@@ -125,7 +128,7 @@ public class Core : MonoBehaviour
 
         if(end == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            gameOverPanel.SetActive(true);
         }
     }
 
