@@ -39,7 +39,10 @@ public class Core : MonoBehaviour
     bool realEnd = false;
 
     bool spawned = false;
-    float spawnTimer = 7;
+    public float spawnTimer = 7;
+
+    int score;
+    public float scoreRatio;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +59,17 @@ public class Core : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(spawned == false)
+        score = PlayerPrefs.GetInt("curScore");
+
+        float scoreRatio = (float)score / 40;
+
+        if (scoreRatio >= 7)
+        {
+            scoreRatio = 6;
+        }
+       
+
+        if (spawned == false)
         {
             spawnNumber = Random.Range(1, 9);
             if (spawnNumber == 1)
@@ -113,7 +126,7 @@ public class Core : MonoBehaviour
             }
             if (spawnTimer <= 0)
             {
-                spawnTimer = 7;
+                spawnTimer = 7 - (float)scoreRatio;
                 spawned = false;
             }
         }

@@ -17,12 +17,16 @@ public class GameManager : MonoBehaviour
     public GameObject core;
 
     int score;
+    int clearScore = 0;
     public Text scoreText;
+    public TextMeshProUGUI scoreNumEnd;
     public GameObject gameoverPanel;
     public GameObject pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
+
+        PlayerPrefs.SetInt("curScore", clearScore);
         Time.timeScale = 1;
         AudioListener.pause = false;
         gameEnd = core.GetComponent<Core>().end;
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         score = PlayerPrefs.GetInt("curScore");
         scoreText.text = score.ToString();
-
+        scoreNumEnd.text = score.ToString();
         
     }
 

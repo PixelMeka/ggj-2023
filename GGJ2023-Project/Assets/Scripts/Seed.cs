@@ -11,6 +11,8 @@ public class Seed : MonoBehaviour
     public GameObject root;
     public Vector3 max;
     bool spawn = false;
+    int score;
+    public float scoreRatio;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +23,13 @@ public class Seed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        score = PlayerPrefs.GetInt("curScore");
+
+        float scoreRatio = (float)score / 20;
+
         float step = (float)speed * Time.deltaTime;
         float rootStep = (float)rootSpeed * Time.deltaTime;
+
         transform.position = Vector3.MoveTowards(transform.position, land.transform.position, step);
 
         if(transform.position == land.transform.position)
@@ -40,7 +47,7 @@ public class Seed : MonoBehaviour
             {
                 if (root.transform.localScale.y < max.y)
                 {
-                    root.transform.localScale = Vector3.Lerp(root.transform.localScale, max, rootSpeed * Time.deltaTime);
+                    root.transform.localScale = Vector3.Lerp(root.transform.localScale, max, rootSpeed * scoreRatio * Time.deltaTime);
                 }
             }
         }
