@@ -53,7 +53,7 @@ public class Core : MonoBehaviour
         player.GetComponent<MakineHareketi>().enabled = true;
         ParticleSystem overheat = GetComponent<ParticleSystem>();
         warning.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

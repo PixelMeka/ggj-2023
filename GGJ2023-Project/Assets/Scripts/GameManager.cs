@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     int score;
     int clearScore = 0;
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI scoreNumEnd;
     public GameObject gameoverPanel;
     public GameObject pauseMenu;

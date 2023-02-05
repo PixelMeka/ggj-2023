@@ -25,7 +25,7 @@ public class Seed : MonoBehaviour
     {
         score = PlayerPrefs.GetInt("curScore");
 
-        float scoreRatio = (float)score / 20;
+        float scoreRatio = ((float)score + 4) / 20;
 
         float step = (float)speed * Time.deltaTime;
         float rootStep = (float)rootSpeed * Time.deltaTime;
