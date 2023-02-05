@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+
 public class MakineHareketi : MonoBehaviour
 {
     private UnityEngine.AI.NavMeshAgent degisken;

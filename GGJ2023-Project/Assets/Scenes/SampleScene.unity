@@ -4380,7 +4380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 439819289}
-  scoreTextNum: {fileID: 0}
+  scoreTextNum: {fileID: 1084303063}
   player: {fileID: 2118078120}
   gameOverPanel: {fileID: 457932154}
   warning: {fileID: 188146292}

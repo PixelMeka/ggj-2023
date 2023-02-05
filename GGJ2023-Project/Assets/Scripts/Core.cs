@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Core : MonoBehaviour
 {
@@ -42,11 +43,13 @@ public class Core : MonoBehaviour
     public float spawnTimer = 7;
 
     int score;
+    int oldScore;
     public float scoreRatio;
 
     // Start is called before the first frame update
     void Start()
     {
+        oldScore = PlayerPrefs.GetInt("highScore");
         scoreText.SetActive(true);
         scoreTextNum.SetActive(true);
 
@@ -201,6 +204,11 @@ public class Core : MonoBehaviour
                 Time.timeScale = 0;
                 AudioListener.pause = true;
                 player.GetComponent<MakineHareketi>().enabled = false;
+
+                if(score > oldScore)
+                {
+                    PlayerPrefs.SetInt("highScore", score);
+                }
             }
         }
     }
