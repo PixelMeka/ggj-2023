@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
         AudioListener.pause = false;
         gameEnd = core.GetComponent<Core>().end;
 
-        if (Random.value > 0.99) 
+        if (Random.value > 0.95) 
         {
-            Instantiate(alien, alienpoint1.transform.position, Quaternion.identity);
+            Instantiate(alien, alienpoint1.transform.position, alienpoint1.transform.localRotation);
         }
     }
 
