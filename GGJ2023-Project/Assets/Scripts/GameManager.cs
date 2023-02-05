@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject alien;
+    public GameObject alienpoint1;
     public GameObject clickButton;
 
     public GameObject player;
@@ -30,6 +32,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         gameEnd = core.GetComponent<Core>().end;
+
+        if (Random.value > 0.99) 
+        {
+            Instantiate(alien, alienpoint1.transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame

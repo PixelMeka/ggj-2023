@@ -7,6 +7,7 @@ using TMPro;
 
 public class Core : MonoBehaviour
 {
+    public GameObject highScoreText;
     public GameObject scoreText;
     public GameObject scoreTextNum;
 
@@ -52,6 +53,7 @@ public class Core : MonoBehaviour
         oldScore = PlayerPrefs.GetInt("highScore");
         scoreText.SetActive(true);
         scoreTextNum.SetActive(true);
+        gameOverPanel.SetActive(false);
 
         player.GetComponent<MakineHareketi>().enabled = true;
         ParticleSystem overheat = GetComponent<ParticleSystem>();
@@ -208,6 +210,7 @@ public class Core : MonoBehaviour
                 if(score > oldScore)
                 {
                     PlayerPrefs.SetInt("highScore", score);
+                    highScoreText.SetActive(true);
                 }
             }
         }
